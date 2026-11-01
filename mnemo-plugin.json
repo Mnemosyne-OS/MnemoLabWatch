@@ -1,0 +1,50 @@
+{
+  "name": "@mnemosyne-plugins/mnemo-labwatch",
+  "displayName": "Lab Watch",
+  "version": "0.1.0",
+  "category": "Research",
+  "icon": "icon.svg",
+  "vendor": "Mnemosyne Labs",
+  "license": "MIT",
+  "repository": "https://github.com/Mnemosyne-OS/MnemoLabWatch",
+  "description": "Every day, the new publications of the AI labs: OpenAI, Anthropic, Google DeepMind, Meta and Mistral AI. Lab Watch reads OpenAlex (articles and preprints, Zenodo deposits left out) and the OpenAI news feed through the background watch of Mnemosyne OS, even with its window closed, and lists what arrived by lab, with the publication date, the day it was picked up and the link.",
+  "descriptionI18n": {
+    "en": "Every day, the new publications of the AI labs: OpenAI, Anthropic, Google DeepMind, Meta and Mistral AI. Lab Watch reads OpenAlex (articles and preprints, Zenodo deposits left out) and the OpenAI news feed through the background watch of Mnemosyne OS, even with its window closed, and lists what arrived by lab, with the publication date, the day it was picked up and the link.",
+    "fr": "Chaque jour, les nouvelles publications des labos d'IA : OpenAI, Anthropic, Google DeepMind, Meta et Mistral AI. Lab Watch lit OpenAlex (articles et prépublications, sans les dépôts Zenodo) et le fil d'actualités d'OpenAI par la veille de fond de Mnemosyne OS, même fenêtre fermée, et range les arrivées par labo, avec la date de publication, le jour du relevé et le lien.",
+    "es": "Cada día, las nuevas publicaciones de los laboratorios de IA: OpenAI, Anthropic, Google DeepMind, Meta y Mistral AI. Lab Watch lee OpenAlex (artículos y preprints, sin los depósitos de Zenodo) y el canal de noticias de OpenAI con la vigilancia de fondo de Mnemosyne OS, incluso con la ventana cerrada, y ordena lo que llega por laboratorio, con la fecha de publicación, el día de la recogida y el enlace."
+  },
+  "keywords": [
+    "anthropic",
+    "deepmind",
+    "meta",
+    "mistral",
+    "openai",
+    "openalex",
+    "papers",
+    "preprints",
+    "research",
+    "labs",
+    "labwatch"
+  ],
+  "permissions": [
+    "vault:read",
+    "watch:background",
+    "model:infer",
+    "wallet:read",
+    "dialog:open"
+  ],
+  "updateStrategy": "git",
+  "entrypoints": {
+    "renderer": "index.html"
+  },
+  "widgets": [
+    {
+      "id": "mnemo-labwatch-main",
+      "icon": "🔬",
+      "name": "Lab Watch",
+      "route": "index.html",
+      "defaultWidth": 960,
+      "defaultHeight": 780
+    }
+  ]
+}

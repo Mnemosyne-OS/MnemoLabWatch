@@ -1,0 +1,4 @@
+node_modules/
+.vite/
+# A local host stand-in to look at the screen outside Mnemosyne OS (never shipped).
+.preview

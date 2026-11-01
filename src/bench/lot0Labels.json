@@ -1,0 +1,417 @@
+{
+ "note": "Lot 0 of doc 187 section 4: the 103 works of the five labs published between 2026-09-28 and 2026-10-28 (OpenAlex, Zenodo left out), labelled by hand by the agent against STAND_IN_TOPICS. Ids and labels only: the texts are fetched live.",
+ "works": [
+  {
+   "id": "W7223706382",
+   "label": "none"
+  },
+  {
+   "id": "W7223264940",
+   "label": "none"
+  },
+  {
+   "id": "W7223224126",
+   "label": "none"
+  },
+  {
+   "id": "W7223231381",
+   "label": "none"
+  },
+  {
+   "id": "W7223241439",
+   "label": "none"
+  },
+  {
+   "id": "W7223384783",
+   "label": "none"
+  },
+  {
+   "id": "W4416245558",
+   "label": "none"
+  },
+  {
+   "id": "W7223006342",
+   "label": "none"
+  },
+  {
+   "id": "W7223061968",
+   "label": "none"
+  },
+  {
+   "id": "W7223119010",
+   "label": "none"
+  },
+  {
+   "id": "W7223241587",
+   "label": "none"
+  },
+  {
+   "id": "W7222914357",
+   "label": "none"
+  },
+  {
+   "id": "W7222986888",
+   "label": "none"
+  },
+  {
+   "id": "W7223058789",
+   "label": "none"
+  },
+  {
+   "id": "W7223105084",
+   "label": "none"
+  },
+  {
+   "id": "W7223051963",
+   "label": "none"
+  },
+  {
+   "id": "W7223055447",
+   "label": "none"
+  },
+  {
+   "id": "W7222416199",
+   "label": "none"
+  },
+  {
+   "id": "W7222488621",
+   "label": "none"
+  },
+  {
+   "id": "W7222694432",
+   "label": "none"
+  },
+  {
+   "id": "W7222695877",
+   "label": "none"
+  },
+  {
+   "id": "W7222921311",
+   "label": "none"
+  },
+  {
+   "id": "W7222965929",
+   "label": "doubtful"
+  },
+  {
+   "id": "W4377233032",
+   "label": "none"
+  },
+  {
+   "id": "W7222437230",
+   "label": "none"
+  },
+  {
+   "id": "W7222478845",
+   "label": "none"
+  },
+  {
+   "id": "W7222915993",
+   "label": "none"
+  },
+  {
+   "id": "W7221760250",
+   "label": "none"
+  },
+  {
+   "id": "W7221858561",
+   "label": "none"
+  },
+  {
+   "id": "W7221933441",
+   "label": "none"
+  },
+  {
+   "id": "W7221605804",
+   "label": "none"
+  },
+  {
+   "id": "W7221749767",
+   "label": "touches"
+  },
+  {
+   "id": "W7221752394",
+   "label": "none"
+  },
+  {
+   "id": "W7221786158",
+   "label": "none"
+  },
+  {
+   "id": "W7222118265",
+   "label": "none"
+  },
+  {
+   "id": "W7221754804",
+   "label": "none"
+  },
+  {
+   "id": "W7221814968",
+   "label": "none"
+  },
+  {
+   "id": "W7221470636",
+   "label": "none"
+  },
+  {
+   "id": "W7221756858",
+   "label": "none"
+  },
+  {
+   "id": "W7221772333",
+   "label": "none"
+  },
+  {
+   "id": "W7221832120",
+   "label": "touches"
+  },
+  {
+   "id": "W7221532284",
+   "label": "none"
+  },
+  {
+   "id": "W7221559193",
+   "label": "none"
+  },
+  {
+   "id": "W7221562730",
+   "label": "none"
+  },
+  {
+   "id": "W7221816032",
+   "label": "none"
+  },
+  {
+   "id": "W7221826760",
+   "label": "none"
+  },
+  {
+   "id": "W7162098200",
+   "label": "none"
+  },
+  {
+   "id": "W7220928298",
+   "label": "none"
+  },
+  {
+   "id": "W7221015533",
+   "label": "none"
+  },
+  {
+   "id": "W7221145236",
+   "label": "none"
+  },
+  {
+   "id": "W7221530534",
+   "label": "none"
+  },
+  {
+   "id": "W7220988033",
+   "label": "none"
+  },
+  {
+   "id": "W7221005207",
+   "label": "unreadable"
+  },
+  {
+   "id": "W7221097034",
+   "label": "touches"
+  },
+  {
+   "id": "W7221127997",
+   "label": "none"
+  },
+  {
+   "id": "W7220983565",
+   "label": "none"
+  },
+  {
+   "id": "W7221016057",
+   "label": "none"
+  },
+  {
+   "id": "W7221016547",
+   "label": "touches"
+  },
+  {
+   "id": "W7221023131",
+   "label": "none"
+  },
+  {
+   "id": "W7221026717",
+   "label": "none"
+  },
+  {
+   "id": "W7220469987",
+   "label": "none"
+  },
+  {
+   "id": "W7220662037",
+   "label": "none"
+  },
+  {
+   "id": "W7220674507",
+   "label": "none"
+  },
+  {
+   "id": "W7220705409",
+   "label": "none"
+  },
+  {
+   "id": "W7220947192",
+   "label": "doubtful"
+  },
+  {
+   "id": "W7220960072",
+   "label": "none"
+  },
+  {
+   "id": "W7221045811",
+   "label": "none"
+  },
+  {
+   "id": "W7220657871",
+   "label": "none"
+  },
+  {
+   "id": "W7220726394",
+   "label": "none"
+  },
+  {
+   "id": "W7220743319",
+   "label": "none"
+  },
+  {
+   "id": "W7216276710",
+   "label": "none"
+  },
+  {
+   "id": "W7220414700",
+   "label": "touches"
+  },
+  {
+   "id": "W7220469325",
+   "label": "none"
+  },
+  {
+   "id": "W7220748425",
+   "label": "none"
+  },
+  {
+   "id": "W4403346997",
+   "label": "none"
+  },
+  {
+   "id": "W4415910832",
+   "label": "none"
+  },
+  {
+   "id": "W7215099257",
+   "label": "none"
+  },
+  {
+   "id": "W7215113960",
+   "label": "none"
+  },
+  {
+   "id": "W7215736700",
+   "label": "none"
+  },
+  {
+   "id": "W7215898934",
+   "label": "none"
+  },
+  {
+   "id": "W7215981550",
+   "label": "none"
+  },
+  {
+   "id": "W7216072803",
+   "label": "none"
+  },
+  {
+   "id": "W7220940387",
+   "label": "none"
+  },
+  {
+   "id": "W4414762963",
+   "label": "none"
+  },
+  {
+   "id": "W7214900988",
+   "label": "none"
+  },
+  {
+   "id": "W7214929450",
+   "label": "none"
+  },
+  {
+   "id": "W7214990545",
+   "label": "none"
+  },
+  {
+   "id": "W7215054941",
+   "label": "none"
+  },
+  {
+   "id": "W7215105284",
+   "label": "none"
+  },
+  {
+   "id": "W7215772181",
+   "label": "none"
+  },
+  {
+   "id": "W7216112986",
+   "label": "none"
+  },
+  {
+   "id": "W7214645330",
+   "label": "none"
+  },
+  {
+   "id": "W7214749553",
+   "label": "none"
+  },
+  {
+   "id": "W7214764566",
+   "label": "touches"
+  },
+  {
+   "id": "W7214995768",
+   "label": "none"
+  },
+  {
+   "id": "W7215044245",
+   "label": "none"
+  },
+  {
+   "id": "W7215133722",
+   "label": "touches"
+  },
+  {
+   "id": "W4287812892",
+   "label": "none"
+  },
+  {
+   "id": "W4405301131",
+   "label": "none"
+  },
+  {
+   "id": "W7214703114",
+   "label": "touches"
+  },
+  {
+   "id": "W7214777842",
+   "label": "none"
+  },
+  {
+   "id": "W7214912522",
+   "label": "none"
+  },
+  {
+   "id": "W7220679154",
+   "label": "none"
+  }
+ ]
+}

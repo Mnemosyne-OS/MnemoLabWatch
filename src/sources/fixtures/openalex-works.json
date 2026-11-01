@@ -1,0 +1,2774 @@
+{
+ "meta": {
+  "count": 5,
+  "note": "OpenAlex works answer, 2026-10-28, ids picked from the last 30 days (doc 187 section 4); authorships and location trimmed to what the parser reads"
+ },
+ "results": [
+  {
+   "id": "https://openalex.org/W7214912522",
+   "doi": "https://doi.org/10.48550/arxiv.2609.36054",
+   "title": "What if automating AI R&D triggers an intelligence explosion?",
+   "publication_date": "2026-09-28",
+   "created_date": "2026-10-01T00:00:00",
+   "abstract_inverted_index": {
+    "In": [
+     0,
+     58
+    ],
+    "contrast": [
+     1
+    ],
+    "to": [
+     2,
+     80,
+     179,
+     189,
+     191
+    ],
+    "even": [
+     3
+    ],
+    "a": [
+     4,
+     87
+    ],
+    "year": [
+     5
+    ],
+    "ago,": [
+     6
+    ],
+    "AI": [
+     7,
+     25,
+     34,
+     75,
+     83,
+     131,
+     175
+    ],
+    "systems": [
+     8,
+     76
+    ],
+    "now": [
+     9
+    ],
+    "write": [
+     10
+    ],
+    "most": [
+     11,
+     82
+    ],
+    "of": [
+     12,
+     23,
+     44,
+     93,
+     144,
+     174
+    ],
+    "the": [
+     13,
+     16,
+     24,
+     158,
+     172
+    ],
+    "code": [
+     14
+    ],
+    "inside": [
+     15
+    ],
+    "companies": [
+     17
+    ],
+    "that": [
+     18,
+     55
+    ],
+    "build": [
+     19
+    ],
+    "them.": [
+     20
+    ],
+    "As": [
+     21
+    ],
+    "more": [
+     22,
+     169
+    ],
+    "research": [
+     26
+    ],
+    "and": [
+     27,
+     71,
+     90,
+     133,
+     138,
+     142,
+     181,
+     186
+    ],
+    "development": [
+     28
+    ],
+    "(R&D)": [
+     29
+    ],
+    "pipeline": [
+     30
+    ],
+    "is": [
+     31
+    ],
+    "automated,": [
+     32
+    ],
+    "could": [
+     33,
+     102,
+     115,
+     126,
+     146
+    ],
+    "progress": [
+     35
+    ],
+    "radically": [
+     36
+    ],
+    "accelerate": [
+     37,
+     116
+    ],
+    "in": [
+     38
+    ],
+    "an": [
+     39,
+     66,
+     98,
+     183,
+     192
+    ],
+    "\"intelligence": [
+     40
+    ],
+    "explosion,\"": [
+     41
+    ],
+    "where": [
+     42
+    ],
+    "years": [
+     43
+    ],
+    "advances": [
+     45
+    ],
+    "are": [
+     46,
+     77
+    ],
+    "compressed": [
+     47
+    ],
+    "into": [
+     48,
+     171
+    ],
+    "months": [
+     49
+    ],
+    "or": [
+     50
+    ],
+    "less?": [
+     51
+    ],
+    "Preliminary": [
+     52
+    ],
+    "evidence": [
+     53
+    ],
+    "suggests": [
+     54
+    ],
+    "it": [
+     56,
+     101
+    ],
+    "could.": [
+     57
+    ],
+    "this": [
+     59,
+     63,
+     96
+    ],
+    "work,": [
+     60
+    ],
+    "we": [
+     61
+    ],
+    "assess": [
+     62
+    ],
+    "evidence,": [
+     64
+    ],
+    "analyze": [
+     65
+    ],
+    "intelligence": [
+     67,
+     99,
+     184,
+     193
+    ],
+    "explosion's": [
+     68,
+     194
+    ],
+    "potential": [
+     69
+    ],
+    "impacts,": [
+     70
+    ],
+    "propose": [
+     72
+    ],
+    "policy": [
+     73
+    ],
+    "responses.": [
+     74
+    ],
+    "on": [
+     78,
+     135
+    ],
+    "track": [
+     79
+    ],
+    "automate": [
+     81
+    ],
+    "R\\&D": [
+     84
+    ],
+    "work": [
+     85
+    ],
+    "within": [
+     86,
+     137
+    ],
+    "few": [
+     88
+    ],
+    "years,": [
+     89
+    ],
+    "possibly": [
+     91
+    ],
+    "all": [
+     92
+    ],
+    "it.": [
+     94
+    ],
+    "If": [
+     95
+    ],
+    "triggers": [
+     97
+    ],
+    "explosion,": [
+     100,
+     185
+    ],
+    "dramatically": [
+     103
+    ],
+    "bring": [
+     104
+    ],
+    "forward": [
+     105
+    ],
+    "AI's": [
+     106
+    ],
+    "benefits,": [
+     107
+    ],
+    "but": [
+     108
+    ],
+    "also": [
+     109
+    ],
+    "pose": [
+     110
+    ],
+    "extreme": [
+     111
+    ],
+    "risks:": [
+     112
+    ],
+    "capabilities": [
+     113
+    ],
+    "growth": [
+     114
+    ],
+    "far": [
+     117
+    ],
+    "beyond": [
+     118
+    ],
+    "what": [
+     119
+    ],
+    "society": [
+     120,
+     188
+    ],
+    "can": [
+     121
+    ],
+    "keep": [
+     122
+    ],
+    "up": [
+     123
+    ],
+    "with,": [
+     124
+    ],
+    "humanity": [
+     125
+    ],
+    "lose": [
+     127
+    ],
+    "control": [
+     128
+    ],
+    "over": [
+     129
+    ],
+    "superhuman": [
+     130
+    ],
+    "systems,": [
+     132
+    ],
+    "checks": [
+     134
+    ],
+    "power": [
+     136
+    ],
+    "between": [
+     139
+    ],
+    "states,": [
+     140
+    ],
+    "companies,": [
+     141
+    ],
+    "branches": [
+     143
+    ],
+    "government": [
+     145
+    ],
+    "be": [
+     147
+    ],
+    "severely": [
+     148
+    ],
+    "eroded.": [
+     149
+    ],
+    "Although": [
+     150
+    ],
+    "there": [
+     151
+    ],
+    "remains": [
+     152
+    ],
+    "much": [
+     153
+    ],
+    "uncertainty": [
+     154
+    ],
+    "about": [
+     155
+    ],
+    "these": [
+     156
+    ],
+    "possibilities,": [
+     157
+    ],
+    "high": [
+     159
+    ],
+    "stakes": [
+     160
+    ],
+    "warrant": [
+     161
+    ],
+    "serious": [
+     162
+    ],
+    "further": [
+     163
+    ],
+    "attention.": [
+     164
+    ],
+    "Policymakers": [
+     165
+    ],
+    "should": [
+     166
+    ],
+    "urgently": [
+     167
+    ],
+    "obtain": [
+     168
+    ],
+    "visibility": [
+     170
+    ],
+    "automation": [
+     173
+    ],
+    "R&D,": [
+     176
+    ],
+    "develop": [
+     177
+    ],
+    "ways": [
+     178
+    ],
+    "steer": [
+     180
+    ],
+    "constrain": [
+     182
+    ],
+    "prepare": [
+     187
+    ],
+    "adapt": [
+     190
+    ],
+    "impacts.": [
+     195
+    ]
+   },
+   "authorships": [
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210161460",
+       "display_name": "OpenAI (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210161460",
+       "display_name": "OpenAI (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210161460",
+       "display_name": "OpenAI (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.48550/arxiv.2609.36054"
+   }
+  },
+  {
+   "id": "https://openalex.org/W7215133695",
+   "doi": null,
+   "title": "What if automating AI R&D triggers an intelligence explosion?",
+   "publication_date": "2026-09-28",
+   "created_date": "2026-10-02T00:00:00",
+   "abstract_inverted_index": {
+    "In": [
+     0,
+     58
+    ],
+    "contrast": [
+     1
+    ],
+    "to": [
+     2,
+     80,
+     179,
+     189,
+     191
+    ],
+    "even": [
+     3
+    ],
+    "a": [
+     4,
+     87
+    ],
+    "year": [
+     5
+    ],
+    "ago,": [
+     6
+    ],
+    "AI": [
+     7,
+     25,
+     34,
+     75,
+     83,
+     131,
+     175
+    ],
+    "systems": [
+     8,
+     76
+    ],
+    "now": [
+     9
+    ],
+    "write": [
+     10
+    ],
+    "most": [
+     11,
+     82
+    ],
+    "of": [
+     12,
+     23,
+     44,
+     93,
+     144,
+     174
+    ],
+    "the": [
+     13,
+     16,
+     24,
+     158,
+     172
+    ],
+    "code": [
+     14
+    ],
+    "inside": [
+     15
+    ],
+    "companies": [
+     17
+    ],
+    "that": [
+     18,
+     55
+    ],
+    "build": [
+     19
+    ],
+    "them.": [
+     20
+    ],
+    "As": [
+     21
+    ],
+    "more": [
+     22,
+     169
+    ],
+    "research": [
+     26
+    ],
+    "and": [
+     27,
+     71,
+     90,
+     133,
+     138,
+     142,
+     181,
+     186
+    ],
+    "development": [
+     28
+    ],
+    "(R&D)": [
+     29
+    ],
+    "pipeline": [
+     30
+    ],
+    "is": [
+     31
+    ],
+    "automated,": [
+     32
+    ],
+    "could": [
+     33,
+     102,
+     115,
+     126,
+     146
+    ],
+    "progress": [
+     35
+    ],
+    "radically": [
+     36
+    ],
+    "accelerate": [
+     37,
+     116
+    ],
+    "in": [
+     38
+    ],
+    "an": [
+     39,
+     66,
+     98,
+     183,
+     192
+    ],
+    "\"intelligence": [
+     40
+    ],
+    "explosion,\"": [
+     41
+    ],
+    "where": [
+     42
+    ],
+    "years": [
+     43
+    ],
+    "advances": [
+     45
+    ],
+    "are": [
+     46,
+     77
+    ],
+    "compressed": [
+     47
+    ],
+    "into": [
+     48,
+     171
+    ],
+    "months": [
+     49
+    ],
+    "or": [
+     50
+    ],
+    "less?": [
+     51
+    ],
+    "Preliminary": [
+     52
+    ],
+    "evidence": [
+     53
+    ],
+    "suggests": [
+     54
+    ],
+    "it": [
+     56,
+     101
+    ],
+    "could.": [
+     57
+    ],
+    "this": [
+     59,
+     63,
+     96
+    ],
+    "work,": [
+     60
+    ],
+    "we": [
+     61
+    ],
+    "assess": [
+     62
+    ],
+    "evidence,": [
+     64
+    ],
+    "analyze": [
+     65
+    ],
+    "intelligence": [
+     67,
+     99,
+     184,
+     193
+    ],
+    "explosion's": [
+     68,
+     194
+    ],
+    "potential": [
+     69
+    ],
+    "impacts,": [
+     70
+    ],
+    "propose": [
+     72
+    ],
+    "policy": [
+     73
+    ],
+    "responses.": [
+     74
+    ],
+    "on": [
+     78,
+     135
+    ],
+    "track": [
+     79
+    ],
+    "automate": [
+     81
+    ],
+    "R\\&D": [
+     84
+    ],
+    "work": [
+     85
+    ],
+    "within": [
+     86,
+     137
+    ],
+    "few": [
+     88
+    ],
+    "years,": [
+     89
+    ],
+    "possibly": [
+     91
+    ],
+    "all": [
+     92
+    ],
+    "it.": [
+     94
+    ],
+    "If": [
+     95
+    ],
+    "triggers": [
+     97
+    ],
+    "explosion,": [
+     100,
+     185
+    ],
+    "dramatically": [
+     103
+    ],
+    "bring": [
+     104
+    ],
+    "forward": [
+     105
+    ],
+    "AI's": [
+     106
+    ],
+    "benefits,": [
+     107
+    ],
+    "but": [
+     108
+    ],
+    "also": [
+     109
+    ],
+    "pose": [
+     110
+    ],
+    "extreme": [
+     111
+    ],
+    "risks:": [
+     112
+    ],
+    "capabilities": [
+     113
+    ],
+    "growth": [
+     114
+    ],
+    "far": [
+     117
+    ],
+    "beyond": [
+     118
+    ],
+    "what": [
+     119
+    ],
+    "society": [
+     120,
+     188
+    ],
+    "can": [
+     121
+    ],
+    "keep": [
+     122
+    ],
+    "up": [
+     123
+    ],
+    "with,": [
+     124
+    ],
+    "humanity": [
+     125
+    ],
+    "lose": [
+     127
+    ],
+    "control": [
+     128
+    ],
+    "over": [
+     129
+    ],
+    "superhuman": [
+     130
+    ],
+    "systems,": [
+     132
+    ],
+    "checks": [
+     134
+    ],
+    "power": [
+     136
+    ],
+    "between": [
+     139
+    ],
+    "states,": [
+     140
+    ],
+    "companies,": [
+     141
+    ],
+    "branches": [
+     143
+    ],
+    "government": [
+     145
+    ],
+    "be": [
+     147
+    ],
+    "severely": [
+     148
+    ],
+    "eroded.": [
+     149
+    ],
+    "Although": [
+     150
+    ],
+    "there": [
+     151
+    ],
+    "remains": [
+     152
+    ],
+    "much": [
+     153
+    ],
+    "uncertainty": [
+     154
+    ],
+    "about": [
+     155
+    ],
+    "these": [
+     156
+    ],
+    "possibilities,": [
+     157
+    ],
+    "high": [
+     159
+    ],
+    "stakes": [
+     160
+    ],
+    "warrant": [
+     161
+    ],
+    "serious": [
+     162
+    ],
+    "further": [
+     163
+    ],
+    "attention.": [
+     164
+    ],
+    "Policymakers": [
+     165
+    ],
+    "should": [
+     166
+    ],
+    "urgently": [
+     167
+    ],
+    "obtain": [
+     168
+    ],
+    "visibility": [
+     170
+    ],
+    "automation": [
+     173
+    ],
+    "R&D,": [
+     176
+    ],
+    "develop": [
+     177
+    ],
+    "ways": [
+     178
+    ],
+    "steer": [
+     180
+    ],
+    "constrain": [
+     182
+    ],
+    "prepare": [
+     187
+    ],
+    "adapt": [
+     190
+    ],
+    "impacts.": [
+     195
+    ]
+   },
+   "authorships": [
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210161460",
+       "display_name": "OpenAI (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210161460",
+       "display_name": "OpenAI (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210161460",
+       "display_name": "OpenAI (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I1290206253",
+       "display_name": "Microsoft (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I40120149",
+       "display_name": "University of Oxford"
+      }
+     ]
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://arxiv.org/abs/2609.36054"
+   }
+  },
+  {
+   "id": "https://openalex.org/W7221005207",
+   "doi": "https://doi.org/10.5281/zenodo.23224016",
+   "title": "Probabilistic Sensing, Deterministic Authority: Admitting Model-Produced Observations into Sufficiency-Checked Governance Contracts",
+   "publication_date": "2026-10-07",
+   "created_date": "2026-10-09T00:00:00",
+   "abstract_inverted_index": {
+    "SARC": [
+     0
+    ],
+    "Jev": [
+     1
+    ],
+    "test": [
+     2
+    ]
+   },
+   "authorships": [
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4387930290",
+       "display_name": "Anthropic (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://arxiv.org/abs/2610.10978"
+   }
+  },
+  {
+   "id": "https://openalex.org/W7221749767",
+   "doi": "https://doi.org/10.48550/arxiv.2610.18108",
+   "title": "A CaLLM Judge is a Better Judge: Mitigating Bias in LLM-as-a-judge",
+   "publication_date": "2026-10-13",
+   "created_date": "2026-10-15T00:00:00",
+   "abstract_inverted_index": {
+    "Large": [
+     0
+    ],
+    "language": [
+     1
+    ],
+    "models": [
+     2,
+     93
+    ],
+    "(LLMs)": [
+     3
+    ],
+    "are": [
+     4
+    ],
+    "increasingly": [
+     5
+    ],
+    "used": [
+     6
+    ],
+    "as": [
+     7,
+     87
+    ],
+    "judges": [
+     8
+    ],
+    "to": [
+     9,
+     70,
+     77,
+     95,
+     105
+    ],
+    "predict": [
+     10
+    ],
+    "which": [
+     11,
+     173
+    ],
+    "of": [
+     12,
+     47,
+     99,
+     142,
+     211
+    ],
+    "two": [
+     13
+    ],
+    "candidate": [
+     14,
+     49
+    ],
+    "answers": [
+     15,
+     50,
+     90
+    ],
+    "a": [
+     16,
+     22,
+     67,
+     120
+    ],
+    "human": [
+     17,
+     26
+    ],
+    "evaluator": [
+     18
+    ],
+    "would": [
+     19
+    ],
+    "prefer,": [
+     20
+    ],
+    "providing": [
+     21
+    ],
+    "scalable": [
+     23
+    ],
+    "alternative": [
+     24
+    ],
+    "when": [
+     25
+    ],
+    "evaluation": [
+     27
+    ],
+    "is": [
+     28,
+     104,
+     148
+    ],
+    "too": [
+     29
+    ],
+    "costly.": [
+     30
+    ],
+    "Unfortunately,": [
+     31
+    ],
+    "LLM": [
+     32,
+     127
+    ],
+    "judgments": [
+     33
+    ],
+    "can": [
+     34
+    ],
+    "exhibit": [
+     35
+    ],
+    "systematic": [
+     36
+    ],
+    "biases.": [
+     37
+    ],
+    "Prior": [
+     38
+    ],
+    "work": [
+     39
+    ],
+    "has": [
+     40
+    ],
+    "documented": [
+     41
+    ],
+    "position,": [
+     42
+    ],
+    "verbosity": [
+     43
+    ],
+    "or": [
+     44
+    ],
+    "model": [
+     45
+    ],
+    "family": [
+     46,
+     84,
+     98
+    ],
+    "the": [
+     48,
+     52,
+     96,
+     100,
+     140,
+     164,
+     176,
+     197,
+     212
+    ],
+    "influencing": [
+     51
+    ],
+    "judge": [
+     53
+    ],
+    "decision": [
+     54
+    ],
+    "rather": [
+     55,
+     179
+    ],
+    "than": [
+     56,
+     180
+    ],
+    "their": [
+     57
+    ],
+    "quality,": [
+     58
+    ],
+    "while": [
+     59,
+     207
+    ],
+    "additional": [
+     60
+    ],
+    "biases": [
+     61,
+     133
+    ],
+    "may": [
+     62
+    ],
+    "remain": [
+     63
+    ],
+    "undocumented.": [
+     64
+    ],
+    "$\\textit{Multicalibration}$": [
+     65
+    ],
+    "provides": [
+     66
+    ],
+    "natural": [
+     68
+    ],
+    "framework": [
+     69,
+     123
+    ],
+    "address": [
+     71
+    ],
+    "this": [
+     72,
+     115
+    ],
+    "problem:": [
+     73
+    ],
+    "each": [
+     74
+    ],
+    "bias": [
+     75,
+     85,
+     141,
+     160,
+     205
+    ],
+    "corresponds": [
+     76
+    ],
+    "miscalibration": [
+     78,
+     107
+    ],
+    "on": [
+     79,
+     200
+    ],
+    "an": [
+     80,
+     126,
+     151
+    ],
+    "identifiable": [
+     81
+    ],
+    "group,": [
+     82
+    ],
+    "$\\textit{e.g.}$,": [
+     83
+    ],
+    "manifests": [
+     86
+    ],
+    "overconfidence": [
+     88
+    ],
+    "in": [
+     89
+    ],
+    "generated": [
+     91
+    ],
+    "by": [
+     92,
+     150
+    ],
+    "belonging": [
+     94
+    ],
+    "same": [
+     97
+    ],
+    "judge.": [
+     101,
+     213
+    ],
+    "The": [
+     102
+    ],
+    "challenge": [
+     103
+    ],
+    "fix": [
+     106
+    ],
+    "simultaneously": [
+     108
+    ],
+    "across": [
+     109,
+     189
+    ],
+    "many,": [
+     110
+    ],
+    "potentially": [
+     111
+    ],
+    "unknown": [
+     112
+    ],
+    "groups.": [
+     113
+    ],
+    "To": [
+     114
+    ],
+    "end,": [
+     116
+    ],
+    "we": [
+     117,
+     186
+    ],
+    "introduce": [
+     118
+    ],
+    "$\\mathrm{CaLLM}$,": [
+     119
+    ],
+    "post": [
+     121
+    ],
+    "hoc": [
+     122
+    ],
+    "that": [
+     124,
+     137,
+     155,
+     194
+    ],
+    "multicalibrates": [
+     125
+    ],
+    "judge,": [
+     128
+    ],
+    "thereby": [
+     129
+    ],
+    "bounding": [
+     130
+    ],
+    "all": [
+     131
+    ],
+    "such": [
+     132
+    ],
+    "simultaneously.": [
+     134
+    ],
+    "We": [
+     135,
+     167
+    ],
+    "prove": [
+     136
+    ],
+    "$\\mathrm{CaLLM}$": [
+     138,
+     174,
+     188
+    ],
+    "bounds": [
+     139
+    ],
+    "every": [
+     143
+    ],
+    "group": [
+     144
+    ],
+    "whose": [
+     145
+    ],
+    "error": [
+     146,
+     199
+    ],
+    "structure": [
+     147
+    ],
+    "captured": [
+     149
+    ],
+    "available": [
+     152
+    ],
+    "representation,": [
+     153
+    ],
+    "and": [
+     154,
+     203
+    ],
+    "augmenting": [
+     156
+    ],
+    "it": [
+     157,
+     182,
+     195
+    ],
+    "with": [
+     158
+    ],
+    "explicit": [
+     159
+    ],
+    "groups": [
+     161
+    ],
+    "further": [
+     162
+    ],
+    "reduces": [
+     163,
+     196
+    ],
+    "residual": [
+     165
+    ],
+    "bias.": [
+     166
+    ],
+    "then": [
+     168
+    ],
+    "derive": [
+     169
+    ],
+    "theoretical": [
+     170
+    ],
+    "conditions": [
+     171
+    ],
+    "under": [
+     172
+    ],
+    "improves": [
+     175
+    ],
+    "judge's": [
+     177
+    ],
+    "accuracy,": [
+     178
+    ],
+    "trading": [
+     181
+    ],
+    "for": [
+     183
+    ],
+    "calibration.": [
+     184
+    ],
+    "Finally,": [
+     185
+    ],
+    "evaluate": [
+     187
+    ],
+    "pairwise": [
+     190
+    ],
+    "preference": [
+     191
+    ],
+    "benchmarks,": [
+     192
+    ],
+    "showing": [
+     193
+    ],
+    "multicalibration": [
+     198
+    ],
+    "both": [
+     201
+    ],
+    "specified": [
+     202
+    ],
+    "unspecified": [
+     204
+    ],
+    "groups,": [
+     206
+    ],
+    "improving": [
+     208
+    ],
+    "predictive": [
+     209
+    ],
+    "performance": [
+     210
+    ]
+   },
+   "authorships": [
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I108290504",
+       "display_name": "University of Pisa"
+      },
+      {
+       "id": "https://openalex.org/I193223587",
+       "display_name": "University of Trento"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I99464096",
+       "display_name": "KU Leuven"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I99464096",
+       "display_name": "KU Leuven"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210114444",
+       "display_name": "Meta (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210114444",
+       "display_name": "Meta (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210114444",
+       "display_name": "Meta (United States)"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I99464096",
+       "display_name": "KU Leuven"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I193223587",
+       "display_name": "University of Trento"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I193223587",
+       "display_name": "University of Trento"
+      }
+     ]
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://arxiv.org/abs/2610.18108"
+   }
+  },
+  {
+   "id": "https://openalex.org/W7223006342",
+   "doi": "https://doi.org/10.64898/2026.10.18.26365833",
+   "title": "Documented Dental Disease in Patients With Staphylococcus aureus Bacteremia",
+   "publication_date": "2026-10-20",
+   "created_date": "2026-10-21T00:00:00",
+   "abstract_inverted_index": {
+    "Abstract": [
+     0
+    ],
+    "Importance": [
+     1
+    ],
+    "Clinicians": [
+     2
+    ],
+    "often": [
+     3,
+     16,
+     262,
+     303,
+     374
+    ],
+    "look": [
+     4
+    ],
+    "for": [
+     5,
+     127
+    ],
+    "a": [
+     6,
+     41,
+     117,
+     315,
+     379
+    ],
+    "dental": [
+     7,
+     17,
+     31,
+     104,
+     119,
+     290,
+     299,
+     333
+    ],
+    "source": [
+     8,
+     388
+    ],
+    "in": [
+     9,
+     33,
+     52,
+     138,
+     175,
+     224,
+     230,
+     263,
+     266,
+     304,
+     310,
+     336
+    ],
+    "Staphylococcus": [
+     10,
+     305
+    ],
+    "aureus": [
+     11,
+     306
+    ],
+    "bacteremia": [
+     12,
+     61,
+     86,
+     156,
+     269,
+     278,
+     307,
+     313
+    ],
+    "(SAB),": [
+     13
+    ],
+    "but": [
+     14,
+     390
+    ],
+    "how": [
+     15
+    ],
+    "disease": [
+     18,
+     32,
+     105,
+     136,
+     173,
+     258,
+     291,
+     300,
+     334,
+     370
+    ],
+    "is": [
+     19,
+     25
+    ],
+    "found,": [
+     20
+    ],
+    "compared": [
+     21
+    ],
+    "with": [
+     22,
+     35,
+     60,
+     83,
+     144,
+     153,
+     178,
+     203,
+     237,
+     323,
+     328,
+     355,
+     375,
+     378
+    ],
+    "other": [
+     23,
+     231
+    ],
+    "bacteremias,": [
+     24
+    ],
+    "unclear.": [
+     26
+    ],
+    "Objective": [
+     27
+    ],
+    "To": [
+     28
+    ],
+    "compare": [
+     29
+    ],
+    "documented": [
+     30,
+     260,
+     301,
+     332,
+     372
+    ],
+    "adults": [
+     34,
+     59,
+     322
+    ],
+    "SAB,": [
+     36,
+     82,
+     199
+    ],
+    "Escherichia": [
+     37,
+     311
+    ],
+    "coli": [
+     38,
+     85,
+     155,
+     268,
+     312,
+     330
+    ],
+    "bacteremia,": [
+     39,
+     331
+    ],
+    "and": [
+     40,
+     47,
+     75,
+     91,
+     101,
+     125,
+     131,
+     147,
+     181,
+     216,
+     239,
+     255,
+     325,
+     338
+    ],
+    "general": [
+     42,
+     78,
+     93,
+     183,
+     226
+    ],
+    "population": [
+     43,
+     79,
+     94,
+     184,
+     227
+    ],
+    "cohort.": [
+     44
+    ],
+    "Design,": [
+     45
+    ],
+    "Setting,": [
+     46
+    ],
+    "Participants": [
+     48
+    ],
+    "Retrospective": [
+     49
+    ],
+    "cohort": [
+     50
+    ],
+    "study": [
+     51
+    ],
+    "the": [
+     53,
+     88,
+     92,
+     96,
+     170,
+     225,
+     248,
+     251,
+     293,
+     361,
+     365,
+     394,
+     397
+    ],
+    "Protégé": [
+     54
+    ],
+    "database": [
+     55
+    ],
+    "of": [
+     56,
+     140,
+     149
+    ],
+    "48": [
+     57
+    ],
+    "975": [
+     58
+    ],
+    "from": [
+     62,
+     106,
+     222
+    ],
+    "January": [
+     63
+    ],
+    "1,": [
+     64
+    ],
+    "2015,": [
+     65
+    ],
+    "through": [
+     66,
+     110
+    ],
+    "December": [
+     67
+    ],
+    "31,": [
+     68
+    ],
+    "2023,": [
+     69
+    ],
+    "assigned": [
+     70
+    ],
+    "by": [
+     71,
+     116
+    ],
+    "earliest": [
+     72
+    ],
+    "in-window": [
+     73
+    ],
+    "organism,": [
+     74
+    ],
+    "81": [
+     76
+    ],
+    "945": [
+     77
+    ],
+    "adults.": [
+     80
+    ],
+    "Exposures": [
+     81
+    ],
+    "E": [
+     84,
+     154,
+     267,
+     329
+    ],
+    "as": [
+     87,
+     95,
+     396
+    ],
+    "primary": [
+     89
+    ],
+    "comparator": [
+     90
+    ],
+    "secondary": [
+     97
+    ],
+    "comparator.": [
+     98
+    ],
+    "Main": [
+     99
+    ],
+    "Outcomes": [
+     100
+    ],
+    "Measures": [
+     102
+    ],
+    "Documented": [
+     103
+    ],
+    "7": [
+     107
+    ],
+    "days": [
+     108,
+     112
+    ],
+    "before": [
+     109
+    ],
+    "30": [
+     111
+    ],
+    "after": [
+     113,
+     250,
+     270,
+     277,
+     364
+    ],
+    "index,": [
+     114
+    ],
+    "defined": [
+     115
+    ],
+    "qualifying": [
+     118
+    ],
+    "procedure": [
+     120
+    ],
+    "or": [
+     121,
+     314
+    ],
+    "disease-specific": [
+     122
+    ],
+    "note": [
+     123
+    ],
+    "text": [
+     124
+    ],
+    "adjusted": [
+     126,
+     159,
+     188,
+     342
+    ],
+    "age,": [
+     128
+    ],
+    "sex,": [
+     129
+    ],
+    "race,": [
+     130
+    ],
+    "documentation": [
+     132
+    ],
+    "intensity.": [
+     133
+    ],
+    "Results": [
+     134
+    ],
+    "Dental": [
+     135,
+     257,
+     369
+    ],
+    "occurred": [
+     137,
+     174,
+     335
+    ],
+    "528": [
+     139
+    ],
+    "16": [
+     141,
+     320
+    ],
+    "435": [
+     142,
+     321
+    ],
+    "patients": [
+     143,
+     152,
+     177,
+     185,
+     236,
+     354
+    ],
+    "SAB": [
+     145,
+     179,
+     238,
+     264,
+     282,
+     324,
+     353,
+     376
+    ],
+    "(3.21%)": [
+     146
+    ],
+    "179": [
+     148
+    ],
+    "24": [
+     150,
+     326
+    ],
+    "942": [
+     151,
+     327
+    ],
+    "(0.72%).": [
+     157
+    ],
+    "The": [
+     158,
+     187,
+     341
+    ],
+    "odds": [
+     160,
+     189,
+     343
+    ],
+    "ratio": [
+     161,
+     190,
+     344
+    ],
+    "was": [
+     162,
+     191,
+     259,
+     279,
+     345,
+     371
+    ],
+    "3.86": [
+     163,
+     346
+    ],
+    "(95%": [
+     164,
+     193,
+     347
+    ],
+    "CI,": [
+     165,
+     194,
+     348
+    ],
+    "3.23": [
+     166,
+     349
+    ],
+    "to": [
+     167,
+     196,
+     228,
+     350
+    ],
+    "4.63).": [
+     168,
+     351
+    ],
+    "By": [
+     169
+    ],
+    "pathology-only": [
+     171
+    ],
+    "definition,": [
+     172
+    ],
+    "517": [
+     176
+    ],
+    "(3.15%)": [
+     180
+    ],
+    "399": [
+     182
+    ],
+    "(0.49%).": [
+     186
+    ],
+    "3.71": [
+     192
+    ],
+    "3.08": [
+     195
+    ],
+    "4.46).": [
+     197
+    ],
+    "Within": [
+     198
+    ],
+    "rates": [
+     200
+    ],
+    "were": [
+     201,
+     274
+    ],
+    "highest": [
+     202
+    ],
+    "prior": [
+     204
+    ],
+    "infective": [
+     205
+    ],
+    "endocarditis": [
+     206
+    ],
+    "(9.8%),": [
+     207
+    ],
+    "opioid": [
+     208
+    ],
+    "use": [
+     209,
+     214
+    ],
+    "disorder": [
+     210
+    ],
+    "(6.2%),": [
+     211
+    ],
+    "injection": [
+     212
+    ],
+    "drug": [
+     213
+    ],
+    "(5.3%),": [
+     215
+    ],
+    "prosthetic": [
+     217
+    ],
+    "valve": [
+     218
+    ],
+    "(5.0%).": [
+     219
+    ],
+    "Prevalence": [
+     220
+    ],
+    "ranged": [
+     221
+    ],
+    "0.49%": [
+     223
+    ],
+    "7.98%": [
+     229
+    ],
+    "streptococcal": [
+     232
+    ],
+    "bacteremia.": [
+     233,
+     294,
+     381
+    ],
+    "Of": [
+     234
+    ],
+    "437": [
+     235
+    ],
+    "an": [
+     240,
+     356
+    ],
+    "assignable": [
+     241,
+     357
+    ],
+    "first": [
+     242,
+     275,
+     362
+    ],
+    "finding": [
+     243,
+     249,
+     363
+    ],
+    "date,": [
+     244,
+     358
+    ],
+    "333": [
+     245
+    ],
+    "(76.2%)": [
+     246
+    ],
+    "had": [
+     247,
+     360
+    ],
+    "index": [
+     252,
+     366
+    ],
+    "date.": [
+     253,
+     367
+    ],
+    "Conclusions": [
+     254
+    ],
+    "Relevance": [
+     256
+    ],
+    "more": [
+     261,
+     302,
+     373
+    ],
+    "than": [
+     265,
+     309,
+     377
+    ],
+    "adjustment.": [
+     271
+    ],
+    "Most": [
+     272
+    ],
+    "findings": [
+     273
+    ],
+    "recorded": [
+     276
+    ],
+    "recognized,": [
+     280
+    ],
+    "during": [
+     281,
+     387
+    ],
+    "evaluation.": [
+     283
+    ],
+    "These": [
+     284
+    ],
+    "data": [
+     285
+    ],
+    "do": [
+     286
+    ],
+    "not": [
+     287,
+     392
+    ],
+    "show": [
+     288
+    ],
+    "that": [
+     289
+    ],
+    "caused": [
+     292
+    ],
+    "Key": [
+     295
+    ],
+    "Points": [
+     296
+    ],
+    "Question": [
+     297
+    ],
+    "Is": [
+     298
+    ],
+    "(SAB)": [
+     308
+    ],
+    "general-population": [
+     316
+    ],
+    "cohort?": [
+     317
+    ],
+    "Findings": [
+     318
+    ],
+    "In": [
+     319
+    ],
+    "3.21%": [
+     337
+    ],
+    "0.72%,": [
+     339
+    ],
+    "respectively.": [
+     340
+    ],
+    "Among": [
+     352
+    ],
+    "76.2%": [
+     359
+    ],
+    "Meaning": [
+     368
+    ],
+    "nonoral": [
+     380
+    ],
+    "This": [
+     382
+    ],
+    "supports": [
+     383
+    ],
+    "focused": [
+     384
+    ],
+    "oral": [
+     385
+    ],
+    "assessment": [
+     386
+    ],
+    "evaluation,": [
+     389
+    ],
+    "does": [
+     391
+    ],
+    "establish": [
+     393
+    ],
+    "mouth": [
+     395
+    ],
+    "source.": [
+     398
+    ]
+   },
+   "authorships": [
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I130769515",
+       "display_name": "Pennsylvania State University"
+      },
+      {
+       "id": "https://openalex.org/I82783531",
+       "display_name": "Penn State Milton S. Hershey Medical Center"
+      }
+     ]
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I181547552",
+       "display_name": "Baylor College of Medicine"
+      }
+     ]
+    },
+    {
+     "institutions": []
+    },
+    {
+     "institutions": [
+      {
+       "id": "https://openalex.org/I4210114444",
+       "display_name": "Meta (United States)"
+      }
+     ]
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.64898/2026.10.18.26365833"
+   }
+  }
+ ]
+}
