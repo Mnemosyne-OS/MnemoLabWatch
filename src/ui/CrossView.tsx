@@ -203,8 +203,8 @@ export function CrossView({ t, lang, invoke, fetchJson, saved, onCrossed, onOpen
       {cache.unavailable && <p className="lab notice">{t('corpus.unavailable', { error: cache.unavailable })}</p>}
       {error && <p className="lab notice" role="alert">{t('action.failed', { error })}</p>}
 
-      <section className="hud panel">
-        <div className="lab">03 · {t('corpus.title')}</div>
+      <section className="panel">
+        <h2><span className={`step${works.length > 0 ? ' done' : ''}`}>1</span>{' '}{t('corpus.title')}</h2>
         <ul className="lab-loads">
           {LABS.map((lab) => {
             const l = cache.loads.find((x) => x.lab === lab.key);
@@ -236,8 +236,8 @@ export function CrossView({ t, lang, invoke, fetchJson, saved, onCrossed, onOpen
         )}
       </section>
 
-      <section className="hud panel">
-        <div className="lab">04 · {t('text.title')}{name ? ` · ${name}` : ''}</div>
+      <section className="panel">
+        <h2><span className={`step${passages.length > 0 ? ' done' : ''}`}>2</span>{' '}{t('text.title')}{name ? ` · ${name}` : ''}</h2>
         <textarea
           className="text-input"
           rows={8}

@@ -7,14 +7,16 @@
  *  - the verdicts already paid for, each with the fingerprint of the topics it
  *    was given: reopening the window never bills the same reading twice, and
  *    a verdict for an older list is not shown as current;
- *  - the last reading's measured cost.
+ *  - the last reading's measured cost;
+ *  - since 0.2.0, the arrivals taken out of the watch's box and not yet
+ *    marked seen (`held`, doc 187 §3.6).
  *
  * A state that cannot be read is NOT an empty one: the screen says so and
  * writes nothing over it.
  */
+import type { InboxItem } from './arrivals';
 import type { TopicVerdict } from './judge/topicJudge';
 import type { Crossing } from './research/crossing';
-import { HOST_TIMEOUT_MS, type HostInvoke } from './sources/http';
 import { cleanTopics, STAND_IN_TOPICS } from './topics';
 
 export interface CostLine {
@@ -51,6 +53,48 @@ export interface Saved {
   cost?: CostLine;
   /** The last crossing of a text (lot 3), when the whole state still fits (stateFits). */
   crossing?: Crossing;
+  /**
+   * The arrivals taken out of the watch's box, kept until marked seen (doc 187
+   * §3.6). 🪤 The host's box keeps 100 and drops the oldest past it, without a
+   * word. Once moved, this is their ONLY copy: the host never hands out an id
+   * it has seen twice. Hence here, in the host's mirror, and not in the frame's
+   * IndexedDB, which an origin change leaves empty (doc 73).
+   * 🚨 Written by stateWriter.ts only, from the HOST's copy: a frame's own copy
+   * of this list is stale as soon as another frame moves its box.
+   */
+  held?: InboxItem[];
+  /** When a move found the box full: older arrivals may have been dropped before. Said until dismissed. */
+  boxFullAt?: string;
+}
+
+/** A watch title longer than this is cut when held: the details cache carries the full one. */
+export const HELD_LABEL_MAX = 200;
+
+const isItem = (i: unknown): i is InboxItem =>
+  !!i && typeof i === 'object'
+  && typeof (i as InboxItem).id === 'string'
+  && typeof (i as InboxItem).source === 'string'
+  && typeof (i as InboxItem).at === 'string'
+  && ((i as InboxItem).label === undefined || typeof (i as InboxItem).label === 'string');
+
+const slim = (i: InboxItem): InboxItem => ({
+  id: i.id, source: i.source, at: i.at,
+  ...(i.label !== undefined ? { label: i.label.slice(0, HELD_LABEL_MAX) } : {}),
+});
+
+/** One held entry per id AND source: a work two labs both list keeps both labs. */
+const heldKey = (i: InboxItem) => JSON.stringify([i.id, i.source]);
+
+/** These items held too, each (id, source) once; what was already held keeps its place. */
+export function holdItems(saved: Saved, items: readonly InboxItem[]): Saved {
+  const held = [...(saved.held ?? [])];
+  const known = new Set(held.map(heldKey));
+  for (const i of items) {
+    if (known.has(heldKey(i))) continue;
+    known.add(heldKey(i));
+    held.push(slim(i));
+  }
+  return { ...saved, held };
 }
 
 /**
@@ -72,6 +116,8 @@ export function readSaved(raw: unknown): Saved {
   const s = (raw && typeof raw === 'object' ? raw : {}) as Partial<Saved>;
   const topics = Array.isArray(s.topics) ? cleanTopics(s.topics.filter((t): t is string => typeof t === 'string')) : [];
   const verdicts = s.verdicts && typeof s.verdicts === 'object' && !Array.isArray(s.verdicts) ? s.verdicts : {};
+  // An unreadable entry is dropped, never the whole list: the rest is still the only copy.
+  const held = Array.isArray(s.held) ? s.held.filter(isItem) : [];
   return {
     v: 1,
     topics: topics.length ? topics : [...STAND_IN_TOPICS],
@@ -79,12 +125,9 @@ export function readSaved(raw: unknown): Saved {
     verdicts,
     ...(s.cost && typeof s.cost === 'object' ? { cost: s.cost } : {}),
     ...(s.crossing && typeof s.crossing === 'object' && Array.isArray(s.crossing.rows) ? { crossing: s.crossing } : {}),
+    ...(held.length ? { held } : {}),
+    ...(typeof s.boxFullAt === 'string' ? { boxFullAt: s.boxFullAt } : {}),
   };
-}
-
-export async function loadSaved(invoke: HostInvoke): Promise<Saved> {
-  const answer = (await invoke('state.get', undefined, HOST_TIMEOUT_MS)) as { state?: unknown } | null;
-  return readSaved(answer?.state ?? null);
 }
 
 /** Only the verdicts of arrivals still in the box: what was marked seen leaves with its verdict. */
@@ -92,8 +135,4 @@ export function keepVerdicts(saved: Saved, keys: ReadonlySet<string>): Saved {
   const verdicts: Saved['verdicts'] = {};
   for (const [k, v] of Object.entries(saved.verdicts)) if (keys.has(k)) verdicts[k] = v;
   return { ...saved, verdicts };
-}
-
-export async function saveSaved(invoke: HostInvoke, saved: Saved): Promise<void> {
-  await invoke('state.set', { state: saved }, HOST_TIMEOUT_MS);
 }

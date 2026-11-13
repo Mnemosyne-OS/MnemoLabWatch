@@ -41,7 +41,7 @@ export function CrossRow({ row, crossing, lang, t, onOpen, onReadFull, fullState
   const work = 'work' in v ? crossing.works[v.work] : undefined;
   const tone = v.kind === 'supports' ? ' chosen' : v.kind === 'partial' ? ' partial' : v.kind === 'diverges' ? ' diverges' : '';
   return (
-    <li className={`hud card${tone}`}>
+    <li className={`card${tone}`}>
       <div className="lab who">
         {t('cross.passage', { n: String(passage.n).padStart(2, '0') })}{passage.heading ? ` · ${passage.heading}` : ''}
       </div>
@@ -49,10 +49,10 @@ export function CrossRow({ row, crossing, lang, t, onOpen, onReadFull, fullState
 
       {v.kind === 'supports' && <div className="lab chosen-ink">{t('cross.supports')}</div>}
       {v.kind === 'partial' && (
-        <div className="lab gold-ink">{t('cross.partial')}{v.missing ? ` · ${t('cross.missing', { what: v.missing })}` : ''}</div>
+        <div className="lab warning-ink">{t('cross.partial')}{v.missing ? ` · ${t('cross.missing', { what: v.missing })}` : ''}</div>
       )}
       {v.kind === 'diverges' && (
-        <div className="lab holo-ink">{t('cross.diverges')} · {t('cross.divergesNote')}</div>
+        <div className="lab info-ink">{t('cross.diverges')} · {t('cross.divergesNote')}</div>
       )}
       {v.kind === 'absent' && (
         <div className="lab">

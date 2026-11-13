@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { StrictMode } from 'react';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { memoryDetailsCache } from './detailsCache';
 import fixture from './sources/fixtures/openalex-works.json';
 import rss from './sources/fixtures/openai-rss.xml?raw';
 import { OPENAI_FEED_LABEL } from './labs';
@@ -65,6 +67,12 @@ import App from './App';
 
 const posts = [...rss.matchAll(/<guid[^>]*>([^<]+)<\/guid>/g)].map((m) => m[1]!);
 
+/** Every clear of the watch's box, in order: the move at opening, then each "seen". */
+const clears = () => calls.filter((c) => c.action === 'watch.clearInbox').map((c) => c.payload as { ids: string[] });
+/** The opening's move is done: the box was written into the state and cleared. */
+const moved = () => waitFor(() => expect(clears().length).toBeGreaterThan(0));
+const held = () => ((host.state as { held?: { id: string }[] } | null)?.held ?? []).map((i) => i.id);
+
 beforeEach(() => {
   calls.length = 0;
   host.refuse = null;
@@ -114,19 +122,20 @@ describe('Lab Watch', () => {
   it('clears only the ids of an arrival marked as seen', async () => {
     render(<App />);
     const title = await screen.findByText(/What if automating/);
+    await moved();
     const card = title.closest('li')!;
     fireEvent.click(within(card).getByRole('button', { name: /Seen/ }));
     await waitFor(() => expect(screen.queryByText(/What if automating/)).not.toBeInTheDocument());
-    const clear = calls.find((c) => c.action === 'watch.clearInbox');
-    expect(clear?.payload).toEqual({ ids: ['https://openalex.org/W7214912522', 'https://openalex.org/W7215133695'] });
+    expect(clears().at(-1)).toEqual({ ids: ['https://openalex.org/W7214912522', 'https://openalex.org/W7215133695'] });
   });
 
   it('marks as seen what is on screen, never a folded post', async () => {
     render(<App />);
     await screen.findByText(/A CaLLM Judge/);
+    await moved();
     fireEvent.click(screen.getByRole('button', { name: /Mark all as seen/ }));
-    await waitFor(() => expect(calls.some((c) => c.action === 'watch.clearInbox')).toBe(true));
-    const ids = (calls.find((c) => c.action === 'watch.clearInbox')!.payload as { ids: string[] }).ids;
+    await waitFor(() => expect(clears()).toHaveLength(2));
+    const ids = clears().at(-1)!.ids;
     expect(ids).toHaveLength(4);
     expect(ids).not.toContain(posts[1]);
     expect(await screen.findByRole('button', { name: 'Other OpenAI posts · 1' })).toBeInTheDocument();
@@ -275,5 +284,87 @@ describe('what the cold review found (doc 187 §5.6)', () => {
     fireEvent.change(screen.getByLabelText('Your text'), { target: { value: 'We find that LLM judgments can exhibit systematic position bias in pairwise grading of answers.' } });
     fireEvent.click(screen.getByRole('button', { name: /Cross 1 passages/ }));
     expect(await screen.findByText(/Not done: TOO_LARGE/)).toBeInTheDocument();
+  });
+});
+
+describe('the watch box moved into the saved state (0.2.0, doc 187 §3.6)', () => {
+  it('writes the box into the state first, clears it after, and lists the held arrivals once the box is empty', async () => {
+    const first = render(<App />);
+    await screen.findByText(/A CaLLM Judge/);
+    await moved();
+    expect(clears()[0]!.ids).toHaveLength(5);
+    expect(held()).toHaveLength(5);
+    expect(calls.findIndex((c) => c.action === 'state.set')).toBeLessThan(calls.findIndex((c) => c.action === 'watch.clearInbox'));
+    first.unmount();
+    host.items = [];
+    render(<App />);
+    expect(await screen.findByText(/A CaLLM Judge/)).toBeInTheDocument();
+    expect(screen.getByText('Arrivals · 3')).toBeInTheDocument();
+  });
+
+  it('lets an arrival marked as seen go from the state', async () => {
+    render(<App />);
+    const title = await screen.findByText(/What if automating/);
+    await moved();
+    fireEvent.click(within(title.closest('li')!).getByRole('button', { name: /Seen/ }));
+    await waitFor(() => expect(held()).toHaveLength(3));
+    expect(held()).not.toContain('https://openalex.org/W7214912522');
+  });
+
+  it('leaves the box as it is when the saved state cannot be read', async () => {
+    host.stateRefuse = 'HOST_STATE_UNREADABLE';
+    render(<App />);
+    await screen.findByText(/A CaLLM Judge/);
+    await new Promise((r) => setTimeout(r, 50));
+    expect(clears()).toEqual([]);
+  });
+
+  it('leaves the box as it is when the state cannot be written, and says why', async () => {
+    host.setRefuse = 'HOST_STATE_WRITE_FAILED';
+    render(<App />);
+    expect(await screen.findByText(/Arrivals left in the watch's box: HOST_STATE_WRITE_FAILED/)).toBeInTheDocument();
+    expect(clears()).toEqual([]);
+  });
+
+  it('says the box was full until it is dismissed, and moves it once under StrictMode', async () => {
+    host.items = Array.from({ length: 100 }, (_, k) => ({ id: `https://openalex.org/W${k + 1}`, label: `Paper ${k + 1}`, source: META, at: AT }));
+    render(<StrictMode><App /></StrictMode>);
+    expect(await screen.findByText(/The watch's box was full on/)).toBeInTheDocument();
+    await moved();
+    expect(clears()).toHaveLength(1);
+    expect(host.state).toHaveProperty('boxFullAt');
+    fireEvent.click(screen.getByRole('button', { name: 'Understood' }));
+    await waitFor(() => expect(host.state).not.toHaveProperty('boxFullAt'));
+    expect(screen.queryByText(/The watch's box was full on/)).not.toBeInTheDocument();
+    expect(held()).toHaveLength(100);
+  });
+
+  it('asks nothing again on reopening for the details already read', async () => {
+    const cache = memoryDetailsCache();
+    const first = render(<App openDetails={async () => cache} />);
+    await screen.findByText(/A CaLLM Judge/);
+    await moved();
+    first.unmount();
+    host.items = [];
+    calls.length = 0;
+    vi.mocked(fetch).mockClear();
+    render(<App openDetails={async () => cache} />);
+    expect(await screen.findByText(/A CaLLM Judge/)).toBeInTheDocument();
+    expect(fetch).not.toHaveBeenCalled();
+    expect(calls.some((c) => c.action === 'social.fetch')).toBe(false);
+  });
+});
+
+describe('a window closed while it reads (doc 187 §3.6)', () => {
+  it('moves nothing once the window is gone, even when the reading lands afterwards', async () => {
+    let release: (() => void) | undefined;
+    const slow = { ...memoryDetailsCache(), put: () => new Promise<void>((r) => { release = r; }) };
+    const view = render(<App openDetails={async () => slow} />);
+    await waitFor(() => expect(release).toBeDefined());
+    view.unmount();
+    release!();
+    await new Promise((r) => setTimeout(r, 50));
+    expect(clears()).toEqual([]);
+    expect(calls.some((c) => c.action === 'state.set')).toBe(false);
   });
 });

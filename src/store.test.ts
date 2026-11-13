@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from 'vitest';
-import { defaultSaved, keepVerdicts, loadSaved, readSaved, saveSaved, STATE_MAX_BYTES, stateBytes, stateFits } from './store';
+import { describe, expect, it } from 'vitest';
+import { defaultSaved, HELD_LABEL_MAX, holdItems, keepVerdicts, readSaved, STATE_MAX_BYTES, stateBytes, stateFits } from './store';
 import { cleanTopics, STAND_IN_TOPICS, topicsKey } from './topics';
 
 describe('saved state', () => {
@@ -21,13 +21,6 @@ describe('saved state', () => {
     expect(Object.keys(keepVerdicts(s, new Set(['b'])).verdicts)).toEqual(['b']);
   });
 
-  it('goes through the host mirror, and a refused read is an error, not an empty state', async () => {
-    const invoke = vi.fn(async (action: string, payload?: unknown) => (action === 'state.get' ? { state: { topics: ['A'], topicsBy: 'person' } } : payload));
-    expect((await loadSaved(invoke)).topics).toEqual(['A']);
-    await saveSaved(invoke, defaultSaved());
-    expect(invoke).toHaveBeenCalledWith('state.set', { state: defaultSaved() }, expect.any(Number));
-    await expect(loadSaved(async () => { throw new Error('HOST_DOWN'); })).rejects.toThrow('HOST_DOWN');
-  });
 });
 
 describe('a kept crossing', () => {
@@ -63,5 +56,34 @@ describe('topics', () => {
     expect(topicsKey(['a', 'b'])).toBe(topicsKey(['a', 'b']));
     expect(topicsKey(['a', 'b'])).not.toBe(topicsKey(['a', 'b ']));
     expect(topicsKey(['a', 'b'])).toMatch(/^[0-9a-f]{8}$/);
+  });
+});
+
+describe('the held arrivals (doc 187 §3.6)', () => {
+  const AT = '2026-11-11T08:00:00.000Z';
+  const item = (id: string, label?: string) => ({ id, source: 'Meta', at: AT, ...(label !== undefined ? { label } : {}) });
+
+  it('reads back what was held, and drops only an entry it cannot read', () => {
+    const s = readSaved({ held: [item('a', 'A'), { id: 7 }, item('b'), null, { id: 'c', source: 'Meta' }], boxFullAt: AT });
+    expect(s.held?.map((i) => i.id)).toEqual(['a', 'b']);
+    expect(s.boxFullAt).toBe(AT);
+    expect(readSaved({ held: 'nope', boxFullAt: 3 })).not.toHaveProperty('held');
+    expect(readSaved({ held: 'nope', boxFullAt: 3 })).not.toHaveProperty('boxFullAt');
+  });
+
+  it('holds each id once, keeps what was held first in its place, and cuts a long title', () => {
+    const base = holdItems(defaultSaved(), [item('a', 'A')]);
+    const next = holdItems(base, [item('b', 'x'.repeat(HELD_LABEL_MAX + 50)), item('a', 'changed')]);
+    expect(next.held?.map((i) => [i.id, i.label?.length])).toEqual([['a', 1], ['b', HELD_LABEL_MAX]]);
+    expect(next.held?.[0]?.label).toBe('A');
+  });
+
+});
+
+describe('a work two labs both list (2026-11-11 stand-in: one id 3 times in a box of 100)', () => {
+  it('holds it once per lab', () => {
+    const at = '2026-11-11T08:00:00.000Z';
+    const s = holdItems(defaultSaved(), [{ id: 'w', source: 'OpenAI', at }, { id: 'w', source: 'Anthropic', at }, { id: 'w', source: 'OpenAI', at }]);
+    expect(s.held?.map((i) => i.source)).toEqual(['OpenAI', 'Anthropic']);
   });
 });

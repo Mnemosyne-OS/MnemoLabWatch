@@ -46,6 +46,11 @@ const en = {
 
   'details.worksFailed': 'OpenAlex details not read: {error}',
   'details.feedFailed': 'OpenAI feed not read: {error}',
+  'box.wasFull': 'The watch\'s box was full on {date}. The host keeps the last 100 arrivals: older ones may have been dropped before Lab Watch kept them.',
+  'box.dismiss': 'Understood',
+  'box.notMoved': 'Arrivals left in the watch\'s box: {error}. The box keeps the last 100.',
+  'box.stateFull': 'Arrivals left in the watch\'s box: Lab Watch\'s saved state is full. Mark arrivals as seen to make room. The box keeps the last 100.',
+  'box.crossingDropped': 'The last crossing was not kept: the saved state needed its room for the arrivals. Run it again to see it.',
   'action.failed': 'Not done: {error}',
 
   'topics.open': 'Topics',
@@ -177,6 +182,11 @@ const fr: Dict = {
 
   'details.worksFailed': 'Détails OpenAlex non lus : {error}',
   'details.feedFailed': 'Fil d\'OpenAI non lu : {error}',
+  'box.wasFull': 'La boîte de la veille était pleine le {date}. L\'hôte garde les 100 dernières arrivées : de plus anciennes ont pu être perdues avant que Lab Watch les garde.',
+  'box.dismiss': 'Compris',
+  'box.notMoved': 'Arrivées laissées dans la boîte de la veille : {error}. La boîte garde les 100 dernières.',
+  'box.stateFull': 'Arrivées laissées dans la boîte de la veille : l\'état sauvegardé de Lab Watch est plein. Marque des arrivées comme vues pour faire de la place. La boîte garde les 100 dernières.',
+  'box.crossingDropped': 'Le dernier croisement n\'a pas été gardé : l\'état sauvegardé avait besoin de sa place pour les arrivées. Relance-le pour le revoir.',
   'action.failed': 'Pas fait : {error}',
 
   'topics.open': 'Sujets',
@@ -304,6 +314,11 @@ const es: Dict = {
 
   'details.worksFailed': 'Detalles de OpenAlex no leídos: {error}',
   'details.feedFailed': 'Canal de OpenAI no leído: {error}',
+  'box.wasFull': 'La bandeja de la vigilancia estaba llena el {date}. El anfitrión guarda las últimas 100 llegadas: las más antiguas pudieron perderse antes de que Lab Watch las guardara.',
+  'box.dismiss': 'Entendido',
+  'box.notMoved': 'Llegadas dejadas en la bandeja de la vigilancia: {error}. La bandeja guarda las últimas 100.',
+  'box.stateFull': 'Llegadas dejadas en la bandeja de la vigilancia: el estado guardado de Lab Watch está lleno. Marca llegadas como vistas para hacer sitio. La bandeja guarda las últimas 100.',
+  'box.crossingDropped': 'El último cruce no se guardó: el estado guardado necesitaba su espacio para las llegadas. Vuelve a lanzarlo para verlo.',
   'action.failed': 'No hecho: {error}',
 
   'topics.open': 'Temas',

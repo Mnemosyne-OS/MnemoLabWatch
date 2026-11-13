@@ -20,13 +20,13 @@ export function TopicsPanel({ topics, byAgent, t, onSave, onCancel }: TopicsPane
   const [lines, setLines] = useState<string[]>(() => [...topics]);
   const set = (i: number, v: string) => setLines((l) => l.map((x, j) => (j === i ? v : x)));
   return (
-    <section className="hud panel topics" aria-label={t('topics.title')}>
-      <div className="lab">02 · {t('topics.title')}</div>
+    <section className="panel topics" aria-label={t('topics.title')}>
+      <h2>{t('topics.title')}</h2>
       {byAgent && <div className="lab note">{t('topics.byAgent')}</div>}
       <ol className="topic-lines">
         {lines.map((line, i) => (
           <li key={i}>
-            <span className="lab n">{String(i + 1).padStart(2, '0')}</span>
+            <span className="lab n">{i + 1}</span>
             <input
               value={line}
               maxLength={MAX_TOPIC_CHARS}

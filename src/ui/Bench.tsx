@@ -55,8 +55,8 @@ export function Bench({ t, lang, invoke, fetchJson, locked = false }: { t: Trans
   };
 
   return (
-    <section className="hud panel" aria-label={t('bench.title', { n: LOT0.length })}>
-      <div className="lab">{t('bench.title', { n: LOT0.length })}</div>
+    <section className="panel" aria-label={t('bench.title', { n: LOT0.length })}>
+      <h2>{t('bench.title', { n: LOT0.length })}</h2>
       {s.state === 'idle' && <button type="button" className="primary" disabled={locked} onClick={() => void run()}>{t('bench.run', { calls: LOT0.length })}</button>}
       {s.state === 'running' && (
         <div className="row">

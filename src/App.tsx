@@ -7,19 +7,26 @@
  * state that cannot be read disables the judge and writes nothing over it.
  * Reading costs model calls: it starts on a click only, the count on the
  * button, and the measured cost is shown afterwards.
+ *
+ * 0.2.0 (doc 187 §3.6): the saved state is read FIRST, because it holds the
+ * arrivals already taken out of the watch's box; then the watch; then the box
+ * is moved into the state. A state that cannot be read is never written over,
+ * so the box then stays as it is.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { countByLab, type Arrival } from './arrivals';
+import { indexedDetailsCache, memoryDetailsCache, type DetailsCache } from './detailsCache';
 import { sdk } from './host';
 import { refusalText } from './i18n/strings';
 import { useI18n } from './i18n/useI18n';
 import { callsNeeded, judgeAll } from './judge/runJudge';
 import { topicSpec, type JudgeInput, type TopicVerdict } from './judge/topicJudge';
 import { LABS, type LabKey } from './labs';
-import { loadWatch, markSeen, type Loaded } from './load';
+import { loadWatch, markSeen, moveBox, type Loaded } from './load';
 import { fetchJson, HOST_TIMEOUT_MS, type HostInvoke } from './sources/http';
 import type { Crossing } from './research/crossing';
-import { keepVerdicts, loadSaved, needsReading, saveSaved, stateFits, type CostLine, type Saved } from './store';
+import { stateWriter } from './stateWriter';
+import { keepVerdicts, needsReading, stateFits, type CostLine, type Saved } from './store';
 import type { Kept } from './ui/CrossView';
 import { cleanTopics, topicsKey } from './topics';
 import { Bench } from './ui/Bench';
@@ -61,7 +68,17 @@ function benchRequested(): boolean {
   }
 }
 
-export default function App() {
+export interface AppProps {
+  /** The details cache; the tests give a memory one. Refused → memory, details read at every opening. */
+  openDetails?: () => Promise<DetailsCache>;
+}
+
+/**
+ * The window. It reads the saved state before the watch because the state
+ * holds the arrivals already taken out of the box; without it, the box is
+ * listed but never emptied (doc 187 §3.6).
+ */
+export default function App({ openDetails = indexedDetailsCache }: AppProps = {}) {
   const { lang, t } = useI18n();
   const [view, setView] = useState<View>({ state: 'reading' });
   const [saved, setSaved] = useState<SavedView>({ state: 'reading' });
@@ -77,34 +94,90 @@ export default function App() {
   // One model job at a time across both views: a reading and a crossing both
   // write the saved state, and the one that finished last would erase the other.
   const [crossBusy, setCrossBusy] = useState(false);
+  // Why the box was not emptied at this opening (doc 187 §3.6), when it was not.
+  const [moveError, setMoveError] = useState<string | null>(null);
+  // The kept crossing was left out of the state to make room for the arrivals.
+  const [crossingDropped, setCrossingDropped] = useState(false);
   const judgeCtrl = useRef<AbortController | null>(null);
+  const cacheRef = useRef<DetailsCache | null>(null);
+  // The latest saved state, for a crossing or a move that lands after a render: never write back an older copy.
+  const savedRef = useRef<Saved | null>(null);
+  // Every write of the state, from every view, goes through this one writer (stateWriter.ts).
+  const writer = useMemo(() => stateWriter(invoke), []);
   const bench = useMemo(benchRequested, []);
+
+  /** The writer left the crossing out: this frame's copy forgets it too, and the screen says so. */
+  const dropCrossing = useCallback(() => {
+    setCrossingDropped(true);
+    const current = savedRef.current;
+    if (!current?.crossing) return;
+    const next: Saved = { ...current };
+    delete next.crossing;
+    savedRef.current = next;
+    setSaved({ state: 'read', data: next });
+  }, []);
 
   useEffect(() => {
     const ctrl = new AbortController();
+    const aborted = () => ctrl.signal.aborted;
+    let cache: DetailsCache | null = null;
+    const commit = (s: Saved) => {
+      savedRef.current = s;
+      setSaved({ state: 'read', data: s });
+    };
     setView({ state: 'reading' });
-    loadWatch({ invoke, fetchJson }, ctrl.signal).then(
-      (data) => { if (!ctrl.signal.aborted) setView({ state: 'read', data }); },
-      (err: unknown) => {
-        if (ctrl.signal.aborted) return;
-        console.error('[mnemo-labwatch] watch not read', err);
-        setView({ state: 'refused', why: message(err) });
-      });
-    return () => ctrl.abort();
-  }, [round]);
-
-  useEffect(() => {
-    let alive = true;
     setSaved({ state: 'reading' });
-    loadSaved(invoke).then(
-      (data) => { if (alive) setSaved({ state: 'read', data }); },
-      (err: unknown) => {
-        if (!alive) return;
+    setMoveError(null);
+
+    void (async () => {
+      // The saved state first: it holds the arrivals already taken out of the box.
+      let base: Saved | null = null;
+      try {
+        base = await writer.read();
+        if (aborted()) return;
+        commit(base);
+      } catch (err) {
+        if (aborted()) return;
         console.error('[mnemo-labwatch] saved state not read', err);
         setSaved({ state: 'unreadable', why: message(err) });
-      });
-    return () => { alive = false; };
-  }, [round]);
+      }
+
+      try {
+        cache = await openDetails();
+      } catch (err) {
+        console.warn('[mnemo-labwatch] details cache not opened, details are read at every opening', err);
+        cache = memoryDetailsCache();
+      }
+      if (aborted()) { cache.close(); return; }
+      cacheRef.current = cache;
+
+      let data: Loaded;
+      try {
+        data = await loadWatch({ invoke, fetchJson, cache }, base?.held ?? [], ctrl.signal);
+      } catch (err) {
+        if (aborted()) return;
+        console.error('[mnemo-labwatch] watch not read', err);
+        setView({ state: 'refused', why: message(err) });
+        return;
+      }
+      if (aborted()) return;
+      setView({ state: 'read', data });
+
+      // 🪤 A state that could not be read is never written over: the box stays the copy.
+      if (!base) return;
+      const opened = base;
+      const moved = await moveBox(writer.write, invoke, () => savedRef.current ?? opened, commit, data.box, data.boxWasFull);
+      if (aborted()) return;
+      if (moved.droppedCrossing) dropCrossing();
+      if (moved.error) setMoveError(moved.error);
+    })();
+
+    return () => {
+      ctrl.abort();
+      if (cache) cache.close();
+      if (cacheRef.current === cache) cacheRef.current = null;
+    };
+  }, [round, openDetails, writer, dropCrossing]);
 
   // A reading in flight stops with the window.
   useEffect(() => () => judgeCtrl.current?.abort(), []);
@@ -116,8 +189,6 @@ export default function App() {
     [arrivals, filter]);
 
   const data = saved.state === 'read' ? saved.data : null;
-  // The latest saved state, for a crossing that lands after a render: never write back an older copy.
-  const savedRef = useRef<Saved | null>(data);
   savedRef.current = data;
   const key = data ? topicsKey(data.topics) : null;
   const verdictOf = useCallback((a: Arrival): TopicVerdict | undefined => {
@@ -143,11 +214,13 @@ export default function App() {
     // it would drop every verdict already paid for.
     const toSave = view.state === 'read' ? keepVerdicts(next, new Set(view.data.arrivals.map((a) => a.key))) : next;
     savedRef.current = next;
-    saveSaved(invoke, toSave).catch((err: unknown) => {
-      console.error('[mnemo-labwatch] state not saved', err);
-      setActionError(message(err));
-    });
-  }, [view]);
+    writer.write(toSave).then(
+      (w) => { if (w.droppedCrossing) dropCrossing(); },
+      (err: unknown) => {
+        console.error('[mnemo-labwatch] state not saved', err);
+        setActionError(message(err));
+      });
+  }, [view, writer, dropCrossing]);
 
   const read = useCallback(async () => {
     if (!data || !spec || !key || judging || crossBusy) return;
@@ -211,7 +284,23 @@ export default function App() {
     setBusy(true);
     setActionError(null);
     try {
+      // The state first, then the box. A refused save leaves the card on screen
+      // with the reason; a box that refuses after it only brings the arrival back.
+      // A state that could not be read is never written: the box is then the copy.
+      const base = savedRef.current;
+      if (base) {
+        const left = view.state === 'read' ? view.data.arrivals.filter((a) => !a.ids.some((id) => ids.includes(id))) : null;
+        // The verdicts leave with their arrivals in this very write.
+        const next = left ? keepVerdicts(base, new Set(left.map((a) => a.key))) : base;
+        const w = await writer.write(next, { release: ids });
+        savedRef.current = next;
+        setSaved({ state: 'read', data: next });
+        if (w.droppedCrossing) dropCrossing();
+      }
       await markSeen(invoke, ids);
+      cacheRef.current?.remove(ids).catch((err: unknown) => {
+        console.warn('[mnemo-labwatch] seen details left in the cache', err);
+      });
       setView((v) => (v.state !== 'read' ? v : {
         state: 'read',
         data: { ...v.data, arrivals: v.data.arrivals.filter((a) => !a.ids.some((id) => ids.includes(id))) },
@@ -222,7 +311,18 @@ export default function App() {
     } finally {
       setBusy(false);
     }
-  }, []);
+  }, [view, writer, dropCrossing]);
+
+  /** The "box was full" notice stays until the person says it was read. */
+  const dismissFull = useCallback(() => {
+    const base = savedRef.current;
+    if (!base?.boxFullAt) return;
+    const next: Saved = { ...base };
+    delete next.boxFullAt;
+    savedRef.current = next;
+    setSaved({ state: 'read', data: next });
+    persist(next);
+  }, [persist]);
 
   const open = useCallback(async (url: string) => {
     setActionError(null);
@@ -240,12 +340,9 @@ export default function App() {
   );
 
   return (
-    <div className="hud-root">
-      <header className="hud bar">
-        <div>
-          <div className="lab">01 · Lab Watch</div>
-          <h1>{t('app.title')}</h1>
-        </div>
+    <div className="lw-root">
+      <header className="bar">
+        <h1>{t('app.title')}</h1>
         <div className="status lab">
           <span className="live">{t('status.daily')}</span>
           {status?.lastRunAt
@@ -265,6 +362,7 @@ export default function App() {
       {/* Both views write the saved state: what stops them is said above both. */}
       {saved.state === 'unreadable' && <p className="lab notice">{t('judge.stateUnreadable', { error: saved.why })}</p>}
       {actionError && <p className="lab notice" role="alert">{t('action.failed', { error: actionError })}</p>}
+      {crossingDropped && <p className="lab notice">{t('box.crossingDropped')}</p>}
 
       <nav className="segmented views" aria-label={t('view.label')}>
         {(['arrivals', 'cross'] as const).map((v) => (
@@ -286,7 +384,7 @@ export default function App() {
       {screenView === 'arrivals' && view.state === 'reading' && <p className="lab reading" role="status">{t('app.reading')}</p>}
 
       {screenView === 'arrivals' && view.state === 'refused' && (
-        <section className="hud panel" role="alert">
+        <section className="panel" role="alert">
           <h2>{t('error.title')}</h2>
           <div className="lab why">{view.why}</div>
           <button type="button" onClick={() => setRound((r) => r + 1)}>{t('error.retry')}</button>
@@ -295,6 +393,15 @@ export default function App() {
 
       {screenView === 'arrivals' && view.state === 'read' && (
         <>
+          {data?.boxFullAt && (
+            <p className="lab notice">
+              {t('box.wasFull', { date: formatMoment(lang, data.boxFullAt) })}{' '}
+              <button type="button" onClick={dismissFull}>{t('box.dismiss')}</button>
+            </p>
+          )}
+          {moveError && (
+            <p className="lab notice">{moveError === 'STATE_FULL' ? t('box.stateFull') : t('box.notMoved', { error: moveError })}</p>
+          )}
           {view.data.worksError && <p className="lab notice">{t('details.worksFailed', { error: view.data.worksError })}</p>}
           {view.data.feedError && <p className="lab notice">{t('details.feedFailed', { error: view.data.feedError })}</p>}
 

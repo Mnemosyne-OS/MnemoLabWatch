@@ -24,7 +24,7 @@ export interface CardProps {
 export function Card({ a, verdict, topics, lang, t, busy, onOpen, onSeen }: CardProps) {
   const touches = verdict?.kind === 'touches';
   return (
-    <li className={`hud card${touches ? ' chosen' : ''}`}>
+    <li className={`card${touches ? ' chosen' : ''}`}>
       <div className="lab who">
         {a.labs.map(labName).join(' · ')} · {a.kind === 'paper' ? t('card.paper') : t('card.post')}
       </div>

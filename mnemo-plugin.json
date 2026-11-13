@@ -1,12 +1,11 @@
 {
   "name": "@mnemosyne-plugins/mnemo-labwatch",
   "displayName": "Lab Watch",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "category": "Research",
   "icon": "icon.svg",
   "vendor": "Mnemosyne Labs",
   "license": "MIT",
-  "repository": "https://github.com/Mnemosyne-OS/MnemoLabWatch",
   "description": "Every day, the new publications of the AI labs: OpenAI, Anthropic, Google DeepMind, Meta and Mistral AI. Lab Watch reads OpenAlex (articles and preprints, Zenodo deposits left out) and the OpenAI news feed through the background watch of Mnemosyne OS, even with its window closed, and lists what arrived by lab, with the publication date, the day it was picked up and the link.",
   "descriptionI18n": {
     "en": "Every day, the new publications of the AI labs: OpenAI, Anthropic, Google DeepMind, Meta and Mistral AI. Lab Watch reads OpenAlex (articles and preprints, Zenodo deposits left out) and the OpenAI news feed through the background watch of Mnemosyne OS, even with its window closed, and lists what arrived by lab, with the publication date, the day it was picked up and the link.",

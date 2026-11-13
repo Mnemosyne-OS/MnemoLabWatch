@@ -1,6 +1,6 @@
 {
   "name": "@mnemosyne-plugins/mnemo-labwatch",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Lab Watch: every day, the new publications of the AI labs (OpenAI, Anthropic, Google DeepMind, Meta, Mistral AI), read from OpenAlex and the OpenAI news feed by the host's background watch.",

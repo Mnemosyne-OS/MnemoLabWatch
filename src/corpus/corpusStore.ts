@@ -7,6 +7,7 @@
  * between a dev and an installed cartridge (doc 73), and then the cache is
  * simply empty again; the screen shows the counts it really holds.
  */
+import { done, openDb, request } from '../idb';
 import type { LabKey } from '../labs';
 
 export interface CorpusWork {
@@ -62,43 +63,15 @@ export function memoryCorpusStore(): CorpusStore {
   };
 }
 
-/** Opening the cache never waits longer than this: past it, the view works from memory and says so. */
-export const OPEN_TIMEOUT_MS = 15_000;
-
 const DB = 'mnemo-labwatch';
 const WORKS = 'works';
 const LOADS = 'loads';
 
-function request<T>(r: IDBRequest<T>): Promise<T> {
-  return new Promise((resolve, reject) => {
-    r.onsuccess = () => resolve(r.result);
-    r.onerror = () => reject(r.error ?? new Error('INDEXEDDB_ERROR'));
-  });
-}
-
-function done(tx: IDBTransaction): Promise<void> {
-  return new Promise((resolve, reject) => {
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error ?? new Error('INDEXEDDB_ERROR'));
-    tx.onabort = () => reject(tx.error ?? new Error('INDEXEDDB_ABORTED'));
-  });
-}
-
-/** The IndexedDB store; rejects when the frame has none. */
+/** The IndexedDB store; rejects when the frame has none, or past the open timeout (idb.ts). */
 export async function indexedCorpusStore(): Promise<CorpusStore> {
-  if (typeof indexedDB === 'undefined') throw new Error('INDEXEDDB_UNAVAILABLE');
-  const open = indexedDB.open(DB, 1);
-  open.onupgradeneeded = () => {
-    const db = open.result;
-    if (!db.objectStoreNames.contains(WORKS)) db.createObjectStore(WORKS, { keyPath: 'id' });
-    if (!db.objectStoreNames.contains(LOADS)) db.createObjectStore(LOADS, { keyPath: 'lab' });
-  };
-  const db = await new Promise<IDBDatabase>((resolve, reject) => {
-    const timer = setTimeout(() => reject(new Error('INDEXEDDB_TIMEOUT')), OPEN_TIMEOUT_MS);
-    open.onsuccess = () => { clearTimeout(timer); resolve(open.result); };
-    open.onerror = () => { clearTimeout(timer); reject(open.error ?? new Error('INDEXEDDB_ERROR')); };
-    // Another window holds an older version open: say it, instead of "Reading…" forever.
-    open.onblocked = () => { clearTimeout(timer); reject(new Error('INDEXEDDB_BLOCKED')); };
+  const db = await openDb(DB, 1, (d) => {
+    if (!d.objectStoreNames.contains(WORKS)) d.createObjectStore(WORKS, { keyPath: 'id' });
+    if (!d.objectStoreNames.contains(LOADS)) d.createObjectStore(LOADS, { keyPath: 'lab' });
   });
   return {
     close: () => db.close(),
